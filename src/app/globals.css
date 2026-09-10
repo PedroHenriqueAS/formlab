@@ -127,4 +127,14 @@
   html {
     @apply font-sans;
   }
+};
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-instrument-serif);
+}
+
+body {
+  background: #0c0d0d;
+  color: #f4f1ea;
 }

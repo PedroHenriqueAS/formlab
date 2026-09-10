@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Manrope } from "next/font/google";
 
+import { instrumentSerif, manrope } from "./fonts";
 import "./globals.css";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument-serif",
-});
 
 export const metadata: Metadata = {
   title: "FormLab",
@@ -27,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} ${instrumentSerif.variable} antialiased`}
+        className={`${manrope.variable} ${instrumentSerif.variable} font-sans antialiased`}
       >
         {children}
       </body>
