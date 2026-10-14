@@ -23,17 +23,17 @@ export function Dropdown({
   label = "Ordenar por",
   name,
   disabled = false,
-  className = "w-35",
+  className = "w-full md:w-48",
 }: DropdownProps) {
   return (
-    <div className={`relative max-w-full shrink-0 ${className}`}>
+    <div className={`relative min-w-0 max-w-full ${className}`}>
       <select
         aria-label={label}
         name={name}
         value={value}
         disabled={disabled}
         onChange={(event) => onChange(event.target.value)}
-        className="block h-[30px] w-full cursor-pointer appearance-none rounded-[10px] border-2 border-[#2b2b2b] bg-[#171717] pl-[10px] pr-8 text-sm font-semibold text-[#f5f5f5] transition-colors [color-scheme:dark] hover:border-[#404040] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#737373] focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] disabled:cursor-not-allowed disabled:opacity-50"
+        className="block min-h-11 w-full cursor-pointer appearance-none rounded-lg border-2 border-[#2b2b2b] bg-[#171717] pl-3 pr-8 text-base font-semibold text-[#f5f5f5] transition-colors [color-scheme:dark] hover:border-[#404040] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#737373] focus-visible:ring-offset-2 focus-visible:ring-offset-[#171717] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
       >
         {options.map((option) => (
           <option

@@ -11,7 +11,7 @@ export function SearchInput({
   ...props
 }: SearchInputProps) {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full min-w-0">
       <Search
         aria-hidden="true"
         className="
@@ -37,7 +37,7 @@ export function SearchInput({
             bg-white/2
             pl-11
             pr-4
-            text-sm
+            text-base md:text-sm
             text-white
             placeholder:text-white/35
             transition-colors

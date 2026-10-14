@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, SlidersHorizontal } from "lucide-react";
+import { ResponsiveSheet } from "@/components/ui/responsive-sheet";
 
 const sizes = ["S", "M", "L", "XL", "XXL"];
 
@@ -71,220 +72,233 @@ export function FilterSidebar() {
   }
 
   return (
-    <aside
-      className="
-        w-full
-        rounded-2xl
-        border border-white/10
-        bg-[#111212]
-        p-5
-      "
+    <ResponsiveSheet
+      title="Filters"
+      description="Choose sizes, colors, and a price range."
+      trigger={<><SlidersHorizontal className="size-4" />Filters</>}
     >
-      <div className="flex items-center justify-between border-b border-white/10 pb-4">
-        <h2 className="text-sm font-semibold text-white">
-          Filter
-        </h2>
+      <aside
+        aria-label="Catalog filters"
+        className="
+          w-full
+          rounded-2xl
+          border border-white/10
+          bg-[#111212]
+          p-4
+        "
+      >
+        <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <h2 className="text-sm font-semibold text-white">
+            Filter
+          </h2>
 
-        <button
-          type="button"
-          onClick={clearFilters}
-          className="
-            text-xs
-            text-white/40
-            transition-colors
-            hover:text-white
-          "
-        >
-          Clear all
-        </button>
-      </div>
-
-      {/* SIZE */}
-      <details open className="group border-b border-white/10 py-5">
-        <summary
-          className="
-            flex
-            cursor-pointer
-            list-none
-            items-center
-            justify-between
-            text-sm
-            font-medium
-            text-white
-          "
-        >
-          Size
-
-          <ChevronDown
+          <button
+            type="button"
+            onClick={clearFilters}
             className="
-              size-4
-              text-white/50
-              transition-transform
-              group-open:rotate-180
+              min-h-11
+              text-xs
+              text-white/40
+              transition-colors
+              hover:text-white
             "
-          />
-        </summary>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {sizes.map((size) => {
-            const isActive = selectedSizes.includes(size);
-
-            return (
-              <button
-                key={size}
-                type="button"
-                aria-pressed={isActive}
-                onClick={() => toggleSize(size)}
-                className={`
-                  flex
-                  h-9
-                  min-w-9
-                  items-center
-                  justify-center
-                  rounded-lg
-                  border
-                  px-3
-                  text-xs
-                  transition-all
-                  ${
-                    isActive
-                      ? "border-orange-500 bg-orange-500/10 text-white"
-                      : "border-white/10 text-white/50 hover:border-white/25 hover:text-white"
-                  }
-                `}
-              >
-                {size}
-              </button>
-            );
-          })}
+          >
+            Clear all
+          </button>
         </div>
-      </details>
 
-      {/* COLOR */}
-      <details open className="group border-b border-white/10 py-5">
-        <summary
-          className="
-            flex
-            cursor-pointer
-            list-none
-            items-center
-            justify-between
-            text-sm
-            font-medium
-            text-white
-          "
-        >
-          Color
-
-          <ChevronDown
+        {/* SIZE */}
+        <details open className="group border-b border-white/10 py-5">
+          <summary
             className="
-              size-4
-              text-white/50
-              transition-transform
-              group-open:rotate-180
+              flex
+              min-h-11
+              cursor-pointer
+              list-none
+              items-center
+              justify-between
+              text-sm
+              font-medium
+              text-white
             "
-          />
-        </summary>
+          >
+            Size
 
-        <div className="mt-4 flex flex-wrap gap-3">
-          {colors.map((color) => {
-            const isActive = selectedColors.includes(color.name);
+            <ChevronDown
+              className="
+                size-4
+                text-white/50
+                transition-transform
+                group-open:rotate-180
+              "
+            />
+          </summary>
 
-            return (
-              <button
-                key={color.name}
-                type="button"
-                title={color.name}
-                aria-label={`Filter by ${color.name}`}
-                aria-pressed={isActive}
-                onClick={() => toggleColor(color.name)}
-                className={`
-                  flex
-                  size-8
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  transition-all
-                  ${
-                    isActive
-                      ? "border-orange-500"
-                      : "border-white/15 hover:border-white/40"
-                  }
-                `}
-              >
-                <span
-                  className="size-5 rounded-full"
-                  style={{
-                    backgroundColor: color.value,
-                  }}
-                />
-              </button>
-            );
-          })}
-        </div>
-      </details>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {sizes.map((size) => {
+              const isActive = selectedSizes.includes(size);
 
-      {/* PRICE */}
-      <details open className="group py-5">
-        <summary
-          className="
-            flex
-            cursor-pointer
-            list-none
-            items-center
-            justify-between
-            text-sm
-            font-medium
-            text-white
-          "
-        >
-          Price
+              return (
+                <button
+                  key={size}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => toggleSize(size)}
+                  className={`
+                    flex
+                    min-h-11
+                    min-w-11
+                    items-center
+                    justify-center
+                    rounded-lg
+                    border
+                    px-3
+                    text-xs
+                    transition-all
+                    ${
+                      isActive
+                        ? "border-orange-500 bg-orange-500/10 text-white"
+                        : "border-white/10 text-white/50 hover:border-white/25 hover:text-white"
+                    }
+                  `}
+                >
+                  {size}
+                </button>
+              );
+            })}
+          </div>
+        </details>
 
-          <ChevronDown
+        {/* COLOR */}
+        <details open className="group border-b border-white/10 py-5">
+          <summary
             className="
-              size-4
-              text-white/50
-              transition-transform
-              group-open:rotate-180
+              flex
+              min-h-11
+              cursor-pointer
+              list-none
+              items-center
+              justify-between
+              text-sm
+              font-medium
+              text-white
             "
-          />
-        </summary>
+          >
+            Color
 
-        <div className="mt-4 flex flex-col gap-2">
-          {prices.map((price) => {
-            const isActive = selectedPrice === price.value;
+            <ChevronDown
+              className="
+                size-4
+                text-white/50
+                transition-transform
+                group-open:rotate-180
+              "
+            />
+          </summary>
 
-            return (
-              <button
-                key={price.value}
-                type="button"
-                onClick={() =>
-                  setSelectedPrice(
-                    isActive ? null : price.value
-                  )
-                }
-                className={`
-                  rounded-lg
-                  border
-                  px-3
-                  py-2.5
-                  text-left
-                  text-xs
-                  transition-all
-                  ${
-                    isActive
-                      ? "border-orange-500 bg-orange-500/10 text-white"
-                      : "border-white/10 text-white/50 hover:border-white/20 hover:text-white"
+          <div className="mt-4 flex flex-wrap gap-3">
+            {colors.map((color) => {
+              const isActive = selectedColors.includes(color.name);
+
+              return (
+                <button
+                  key={color.name}
+                  type="button"
+                  title={color.name}
+                  aria-label={`Filter by ${color.name}`}
+                  aria-pressed={isActive}
+                  onClick={() => toggleColor(color.name)}
+                  className={`
+                    flex
+                    size-11
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    transition-all
+                    ${
+                      isActive
+                        ? "border-orange-500"
+                        : "border-white/15 hover:border-white/40"
+                    }
+                  `}
+                >
+                  <span
+                    className="size-5 rounded-full"
+                    style={{
+                      backgroundColor: color.value,
+                    }}
+                  />
+                </button>
+              );
+            })}
+          </div>
+        </details>
+
+        {/* PRICE */}
+        <details open className="group py-5">
+          <summary
+            className="
+              flex
+              min-h-11
+              cursor-pointer
+              list-none
+              items-center
+              justify-between
+              text-sm
+              font-medium
+              text-white
+            "
+          >
+            Price
+
+            <ChevronDown
+              className="
+                size-4
+                text-white/50
+                transition-transform
+                group-open:rotate-180
+              "
+            />
+          </summary>
+
+          <div className="mt-4 flex flex-col gap-2">
+            {prices.map((price) => {
+              const isActive = selectedPrice === price.value;
+
+              return (
+                <button
+                  key={price.value}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() =>
+                    setSelectedPrice(
+                      isActive ? null : price.value
+                    )
                   }
-                `}
-              >
-                {price.label}
-              </button>
-            );
-          })}
-        </div>
-      </details>
-    </aside>
+                  className={`
+                    min-h-11
+                    rounded-lg
+                    border
+                    px-3
+                    py-2.5
+                    text-left
+                    text-xs
+                    transition-all
+                    ${
+                      isActive
+                        ? "border-orange-500 bg-orange-500/10 text-white"
+                        : "border-white/10 text-white/50 hover:border-white/20 hover:text-white"
+                    }
+                  `}
+                >
+                  {price.label}
+                </button>
+              );
+            })}
+          </div>
+        </details>
+      </aside>
+    </ResponsiveSheet>
   );
 }

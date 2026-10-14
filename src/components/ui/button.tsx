@@ -69,7 +69,7 @@ const buttonVariants = cva(
           "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
 
         hero:
-          "h-14 min-w-[210px] gap-3 px-8 text-base font-semibold [&_svg:not([class*='size-'])]:size-5",
+          "min-h-12 w-full min-w-0 gap-3 px-4 py-3 text-sm font-semibold md:w-auto xl:min-h-14 xl:px-8 xl:text-base [&_svg:not([class*='size-'])]:size-5",
 
         icon:
           "size-8 rounded-lg",

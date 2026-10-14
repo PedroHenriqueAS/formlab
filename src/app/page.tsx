@@ -7,20 +7,18 @@ import { HeroSection } from "@/components/layout/hero-section";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center font-sans bg-black w-screen h-screen">
+    <div className="min-h-screen w-full bg-black font-sans">
       <Header />
-      <div className="w-full h-full px-6 py-2">
+      <main className="mx-auto w-full max-w-[1440px] px-4 py-2 md:px-6 xl:px-8">
         <HeroSection />
-        <section className="grid grid-cols-6 gap-4 mt-3 h-screen">
-          <div className="col-span-1 h-screen rounded-lg">
-            <FilterSidebar />
-          </div>
-          <div className="col-span-5 h-screen">
+        <section aria-label="Product catalog" className="mt-6 grid min-w-0 gap-4 md:grid-cols-[11rem_minmax(0,1fr)] xl:grid-cols-[12rem_minmax(0,1fr)] xl:gap-6">
+          <FilterSidebar />
+          <div className="min-w-0">
             <Filter />
             <CardList />
           </div>
         </section>
-      </div>
+      </main>
       <Footer />
     </div>
   );
