@@ -1,6 +1,7 @@
 import { CardList } from "@/components/layout/content/card-list";
 import { Filter } from "@/components/layout/content/filter";
 import { FilterSidebar } from "@/components/layout/content/sidebar";
+import { Footer } from "@/components/layout/footer/footer";
 import { Header } from "@/components/layout/header/header";
 import { HeroSection } from "@/components/layout/hero-section";
 
@@ -20,6 +21,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }
