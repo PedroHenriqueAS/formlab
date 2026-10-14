@@ -2,11 +2,16 @@ import { ChevronDown } from "lucide-react";
 
 export function RightsSection() {
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-8">
+    <div className="mx-auto w-full max-w-[1440px] px-4 md:px-6 xl:px-8">
       <div
         className="
       flex
-      items-center
+      flex-col
+      items-start
+      gap-4
+      md:flex-row
+      md:flex-wrap
+      md:items-center
       justify-between
       border-t
       border-white/10
@@ -19,7 +24,7 @@ export function RightsSection() {
         </p>
 
         {/* Payments */}
-        <div className="flex items-center gap-2">
+        <div aria-label="Payment methods" className="flex max-w-full flex-wrap items-center gap-2">
           <div className="flex h-10 min-w-18 items-center justify-center rounded-lg border border-white/15 px-4">
             <span className="text-sm font-bold italic text-white">VISA</span>
           </div>
@@ -49,6 +54,7 @@ export function RightsSection() {
           type="button"
           className="
         flex
+        min-h-11
         items-center
         gap-2
         text-sm

@@ -3,13 +3,13 @@ import { RightsSection } from "./rights-section";
 
 export function Footer() {
   return (
-    <div className="mt-35 w-full bg-[#111212] text-white">
-      <div className="mx-auto w-full max-w-360 px-8">
-        <div className="border-t border-white/10 py-10">
-          <div className="grid grid-cols-[3fr_4fr_3fr] gap-10">
-            <div className="w-full">
-              <div className="flex items-center gap-4">
-                <h2 className="font-display text-[42px] leading-none tracking-[-0.02em] text-white">
+    <footer className="mt-12 w-full bg-[#111212] text-white md:mt-16 xl:mt-24">
+      <div className="mx-auto w-full max-w-[1440px] px-4 md:px-6 xl:px-8">
+        <div className="border-t border-white/10 py-8 xl:py-10">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-[3fr_4fr_3fr]">
+            <div className="min-w-0 w-full">
+              <div className="flex flex-wrap items-center gap-3 xl:gap-4">
+                <h2 className="font-display text-4xl leading-none tracking-[-0.02em] text-white xl:text-[42px]">
                   FormLab
                 </h2>
                 <div className="h-10 w-px bg-white/25" />
@@ -23,22 +23,22 @@ export function Footer() {
                 Custom shirts for self-expression, your team, your brand — or
                 just because. Make it yours.
               </p>
-              <div className="mt-7 flex items-center gap-6">
-                <button className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
+              <div className="mt-6 flex flex-wrap items-center gap-4 xl:gap-6">
+                <button type="button" aria-label="Social profile 1 (placeholder)" className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
                   <Trash size={16} />
                 </button>
-                <button className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
+                <button type="button" aria-label="Social profile 2 (placeholder)" className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
                   <Trash size={16} />
                 </button>
-                <button className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
+                <button type="button" aria-label="Social profile 3 (placeholder)" className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
                   <Trash size={16} />
                 </button>
-                <button className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
+                <button type="button" aria-label="Social profile 4 (placeholder)" className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
                   <Trash size={16} />
                 </button>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid min-w-0 grid-cols-[repeat(auto-fit,minmax(6rem,1fr))] gap-x-4 gap-y-6 xl:grid-cols-3 xl:gap-6">
               <ul className="space-y-2 text-sm text-white/55">
                 <li className="mb-4 text-base font-semibold text-white">
                   Shop
@@ -68,7 +68,7 @@ export function Footer() {
                 <li className="transition hover:text-white">FAQ</li>
               </ul>
             </div>
-            <div className="border-l border-white/10 pl-10">
+            <div className="min-w-0 border-t border-white/10 pt-6 md:col-span-2 xl:col-span-1 xl:border-t-0 xl:border-l xl:pt-0 xl:pl-6">
               <h2 className="text-lg font-semibold text-white">
                 Join the Creative Club
               </h2>
@@ -76,18 +76,19 @@ export function Footer() {
                 Get early access to new drops, exclusive designs and special
                 offers.
               </p>
-              <form className="mt-6 w-full">
+              <form className="mt-6 w-full max-w-md">
                 <div className="flex h-14 items-center rounded-full border border-white/15 bg-white/[0.02] p-1">
                   <input
                     type="email"
+                    aria-label="Your email address"
                     placeholder="Your email address"
                     className="
                   h-full
                   min-w-0
                   flex-1
                   bg-transparent
-                  px-5
-                  text-sm
+                  px-3
+                  text-base md:text-sm
                   text-white
                   outline-none
                   placeholder:text-white/35
@@ -115,15 +116,15 @@ export function Footer() {
                   </button>
                 </div>
               </form>
-              <div className="mt-4 flex items-center gap-3">
+              <div className="mt-3 flex min-h-11 items-center gap-3">
                 <input
                   id="newsletter-consent"
                   type="checkbox"
-                  className="size-4 accent-orange-500"
+                  className="size-5 shrink-0 accent-orange-500"
                 />
                 <label
                   htmlFor="newsletter-consent"
-                  className="text-xs text-white/40"
+                  className="flex min-h-11 cursor-pointer items-center py-2 text-xs text-white/40"
                 >
                   I agree to receive emails from FormLab.
                 </label>
@@ -135,14 +136,14 @@ export function Footer() {
       <RightsSection />
       <div
         className="
-      h-96
+      h-40 md:h-64 xl:h-96
       w-full
       bg-[url('/footer.png')]
       bg-cover
-      bg-position-[center_75%]
+      bg-position-[center_85%] md:bg-position-[center_80%] xl:bg-position-[center_75%]
       bg-no-repeat
     "
       />
-    </div>
+    </footer>
   );
 }
