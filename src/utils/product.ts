@@ -23,6 +23,7 @@ export type ProductSize = "S" | "M" | "L" | "XL" | "XXL";
 export const cards = [
   {
     id: 1,
+    slug: "fuji-horizon",
     name: "Fuji Horizon",
     category: "T-Shirts",
     styles: ["Minimal"],
@@ -35,6 +36,7 @@ export const cards = [
 
   {
     id: 2,
+    slug: "koi-balance",
     name: "Koi Balance",
     category: "T-Shirts",
     styles: ["Street"],
@@ -47,6 +49,7 @@ export const cards = [
 
   {
     id: 3,
+    slug: "torii-mist",
     name: "Torii Mist",
     category: "Long Sleeve",
     styles: ["Minimal"],
@@ -59,6 +62,7 @@ export const cards = [
 
   {
     id: 4,
+    slug: "moon-tide",
     name: "Moon Tide",
     category: "V-Neck",
     styles: ["Minimal"],
@@ -71,6 +75,7 @@ export const cards = [
 
   {
     id: 5,
+    slug: "red-crane",
     name: "Red Crane",
     category: "Tank Top",
     styles: ["Street"],
@@ -83,6 +88,7 @@ export const cards = [
 
   {
     id: 6,
+    slug: "rising-dragon",
     name: "Rising Dragon",
     category: "Hoodie",
     styles: ["Street"],
@@ -95,6 +101,7 @@ export const cards = [
 
   {
     id: 7,
+    slug: "sakura-night",
     name: "Sakura Night",
     category: "Sweatshirt",
     styles: ["Minimal"],
@@ -107,6 +114,7 @@ export const cards = [
 
   {
     id: 8,
+    slug: "fuji-bloom",
     name: "Fuji Bloom",
     category: "Cropped",
     styles: ["Minimal"],
@@ -119,6 +127,7 @@ export const cards = [
 
   {
     id: 9,
+    slug: "ukiyo-waves",
     name: "Ukiyo Waves",
     category: "Oversized",
     styles: ["Street"],
@@ -131,6 +140,7 @@ export const cards = [
 
   {
     id: 10,
+    slug: "samurai-spirit",
     name: "Samurai Spirit",
     category: "T-Shirts",
     styles: ["Street"],
@@ -142,6 +152,7 @@ export const cards = [
   },
   {
   id: 11,
+  slug: "fuji-shadow",
   name: "Fuji Shadow",
   category: "V-Neck",
   styles: ["Minimal"],
@@ -154,6 +165,7 @@ export const cards = [
 
 {
   id: 12,
+  slug: "crane-horizon",
   name: "Crane Horizon",
   category: "Zip Hoodie",
   styles: ["Street"],

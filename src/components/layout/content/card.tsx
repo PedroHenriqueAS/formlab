@@ -1,11 +1,14 @@
 import { Plus } from "lucide-react";
+import Link from "next/link";
 
 interface CardProps {
   imageUrl: string;
+  slug: string;
 }
 
-export function Card({ imageUrl }: CardProps) {
+export function Card({ imageUrl, slug }: CardProps) {
   return (
+    <Link href={`/products/${slug}`}>
     <div className="min-w-0 w-full overflow-hidden rounded-2xl bg-[#111212]">
       <div
         role="img"
@@ -46,5 +49,6 @@ export function Card({ imageUrl }: CardProps) {
         </div>
       </div>
     </div>
+    </Link>
   );
 }
