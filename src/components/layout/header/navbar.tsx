@@ -1,14 +1,37 @@
 "use client";
 
-import { useState } from "react";
 import { Menu } from "lucide-react";
+
 import { ResponsiveSheet } from "@/components/ui/responsive-sheet";
+import type { ContentSection } from "@/types/navigation";
 
-const tabs = ["Catalog", "Customize", "About"];
+type HeaderNavProps = {
+  activeSection: ContentSection;
+  onSectionChange: (section: ContentSection) => void;
+};
 
-export function HeaderNav() {
-  const [activeTab, setActiveTab] = useState("Catalog");
+const tabs: {
+  label: string;
+  value: ContentSection;
+}[] = [
+  {
+    label: "Catalog",
+    value: "catalog",
+  },
+  {
+    label: "Customize",
+    value: "customize",
+  },
+  {
+    label: "About",
+    value: "about",
+  },
+];
 
+export function HeaderNav({
+  activeSection,
+  onSectionChange,
+}: HeaderNavProps) {
   return (
     <ResponsiveSheet
       title="FormLab"
@@ -19,21 +42,18 @@ export function HeaderNav() {
       <nav aria-label="Main navigation">
         <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-1">
           {tabs.map((tab) => {
-            const isActive = activeTab === tab;
+            const isActive = activeSection === tab.value;
 
             return (
-              <li key={tab}>
+              <li key={tab.value}>
                 <button
                   type="button"
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => onSectionChange(tab.value)}
                   aria-pressed={isActive}
                   className="
                     relative
                     min-h-11
                     w-full
-                    md:w-auto
-                    md:px-3
-                    xl:w-24
                     py-3
                     text-center
                     text-sm
@@ -43,9 +63,14 @@ export function HeaderNav() {
                     hover:opacity-80
                     focus-visible:outline-2
                     focus-visible:outline-orange-500
+
+                    md:w-auto
+                    md:px-3
+
+                    xl:w-24
                   "
                 >
-                  {tab}
+                  {tab.label}
 
                   <span
                     className={`
@@ -54,10 +79,13 @@ export function HeaderNav() {
                       left-1/2
                       h-0.5
                       -translate-x-1/2
+                      bg-orange-500
                       transition-all
                       duration-300
                       ${
-                        isActive ? "w-10 bg-red-500 opacity-100" : "w-0 opacity-0"
+                        isActive
+                          ? "w-10 opacity-100"
+                          : "w-0 opacity-0"
                       }
                     `}
                   />

@@ -13,13 +13,17 @@ const categories = [
   "New Drop",
 ];
 
-export function Filter() {
+interface FilterProps {
+    ProductsCount: number;
+}
+
+export function Filter({ ProductsCount }: FilterProps) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [sort, setSort] = useState("featured");
 
   return (
     <div className="flex min-w-0 flex-col gap-3 xl:flex-row xl:flex-wrap xl:items-center">
-      <p className="shrink-0 text-xs text-white/60">Products 6</p>
+      <p className="shrink-0 text-xs text-white/60">Products {ProductsCount}</p>
       <div aria-label="Product categories" className="flex min-w-0 max-w-full gap-1 overflow-x-auto py-1 md:flex-wrap md:overflow-visible xl:flex-1">
         {categories.map((category) => {
           const isActive = activeCategory === category;
