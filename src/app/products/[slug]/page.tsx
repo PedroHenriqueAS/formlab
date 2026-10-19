@@ -1,18 +1,25 @@
-import Productinfo from "./product-info";
+import { notFound } from "next/navigation";
 
-export default function ProductPage() {
+import { getProductDetails } from "../product-data";
+import { ProductDetailsView } from "./product-details";
+import { ProductStory } from "./product-story";
+
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const product = getProductDetails(slug);
+
+  if (!product) {
+    notFound();
+  }
+
   return (
-    <main className="mx-auto w-full max-w-[1440px] h-155 grid grid-cols-[6fr_4fr] gap-2 px-8">
-      <div className="bg-gray-500 grid grid-cols-[1fr_4fr]">
-        <div className="flex flex-col gap-3 pl-2">
-            <div className="h-30 w-30 bg-amber-800 rounded-lg"></div>
-            <div className="h-30 w-30 bg-amber-800 rounded-lg"></div>
-            <div className="h-30 w-30 bg-amber-800 rounded-lg"></div>
-            <div className="h-30 w-30 bg-amber-800 rounded-lg"></div>
-        </div>
-        <div className="h-155 w-155 bg-blue-700 rounded-2xl"></div>
-      </div>
-      <Productinfo />
+    <main className="mx-auto w-full max-w-[1440px] px-4 pb-2 pt-6 md:px-6 md:pt-8 xl:px-8">
+      <ProductDetailsView key={product.slug} product={product} />
+      <ProductStory product={product} />
     </main>
   );
 }

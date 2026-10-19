@@ -1,6 +1,8 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ArrowLeft, Menu } from "lucide-react";
 
 import { ResponsiveSheet } from "@/components/ui/responsive-sheet";
 import type { ContentSection } from "@/types/navigation";
@@ -28,10 +30,99 @@ const tabs: {
   },
 ];
 
+const productsMock: Record<
+  string,
+  {
+    name: string;
+    category: string;
+  }
+> = {
+  "fuji-horizon": {
+    name: "Fuji Horizon Tee",
+    category: "T-Shirts",
+  },
+  "koi-balance": {
+    name: "Koi Balance Tee",
+    category: "T-Shirts",
+  },
+  "torii-mist": {
+    name: "Torii Mist",
+    category: "Long Sleeve",
+  },
+  "moon-tide": {
+    name: "Moon Tide",
+    category: "V-Neck",
+  },
+};
+
 export function HeaderNav({
   activeSection,
   onSectionChange,
 }: HeaderNavProps) {
+  const pathname = usePathname();
+
+  const isProductPage = pathname.startsWith("/products/");
+
+  if (isProductPage) {
+    const slug = pathname.split("/")[2];
+
+    const product = productsMock[slug];
+
+    return (
+      <nav
+        aria-label="Product navigation"
+        className="flex items-center"
+      >
+        <Link
+          href="/"
+          onClick={() => onSectionChange("catalog")}
+          className="
+            group
+            flex
+            items-center
+            gap-2
+            text-sm
+            font-medium
+            text-white/60
+            transition-colors
+            hover:text-white
+          "
+        >
+          <ArrowLeft
+            size={16}
+            className="
+              transition-transform
+              duration-300
+              group-hover:-translate-x-1
+            "
+          />
+
+          <span>Catalog</span>
+        </Link>
+
+        {product && (
+          <>
+            <span className="mx-3 hidden text-white/20 md:block">
+              /
+            </span>
+
+            <span className="hidden text-sm text-white/35 md:block">
+              {product.category}
+            </span>
+
+            <span className="mx-3 hidden text-white/20 xl:block">
+              /
+            </span>
+
+            <span className="hidden text-sm text-white/70 xl:block">
+              {product.name}
+            </span>
+          </>
+        )}
+      </nav>
+    );
+  }
+
   return (
     <ResponsiveSheet
       title="FormLab"

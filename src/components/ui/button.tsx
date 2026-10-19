@@ -40,6 +40,21 @@ const buttonVariants = cva(
           focus-visible:border-[#ff7448]
           focus-visible:ring-[#ff6738]/40
         `,
+        buy: `
+          rounded-full
+          border
+          border-[#ff7448]
+          bg-gradient-to-r
+          from-[#ff5a2f]
+          to-[#ff7a32]
+          text-white
+          w-full
+          shadow-[0_8px_30px_rgba(255,91,47,0.15)]
+          hover:brightness-110
+          active:brightness-95
+          focus-visible:border-[#ff7448]
+          focus-visible:ring-[#ff6738]/40
+        `,
 
         ctaOutline: `
           rounded-full
