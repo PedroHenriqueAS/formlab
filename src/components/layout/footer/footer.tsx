@@ -138,7 +138,7 @@ export function Footer() {
         className="
       h-40 md:h-64 xl:h-96
       w-full
-      bg-[url('/footer.png')]
+      bg-[url('/footer-background.png')]
       bg-cover
       bg-position-[center_85%] md:bg-position-[center_80%] xl:bg-position-[center_75%]
       bg-no-repeat
