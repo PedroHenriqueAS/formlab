@@ -1,14 +1,16 @@
 "use client";
 
-import { ShoppingCart, User } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
-import { SearchInput } from "@/components/ui/search-input";
 import { useNavigation } from "@/providers/navigation-provider";
 
+import { AccountDropdown, CartDropdown, SearchDropdown } from "./header-dropdowns";
 import { HeaderNav } from "./navbar";
 
 export function Header() {
   const { activeSection, setActiveSection } = useNavigation();
+  const pathname = usePathname();
 
   return (
     <header
@@ -33,7 +35,6 @@ export function Header() {
         xl:px-8
       "
     >
-      {/* BRAND */}
       <div className="flex min-w-0 items-center gap-2">
         <h1 className="text-2xl font-bold text-white">
           FormLab
@@ -61,7 +62,6 @@ export function Header() {
         </span>
       </div>
 
-      {/* NAVIGATION */}
       <div className="order-3 md:order-none">
         <HeaderNav
           activeSection={activeSection}
@@ -69,85 +69,40 @@ export function Header() {
         />
       </div>
 
-      {/* SEARCH + ACTIONS */}
-      <div
-        className="
-          contents
-
-          md:flex
-          md:min-w-0
-          md:items-center
-          md:justify-end
-          md:gap-1
-
-          xl:gap-4
-        "
-      >
-        <div
-          className="
-            order-4
-            col-span-3
-            min-w-0
-
-            md:order-none
-            md:max-w-96
-            md:flex-1
-          "
-        >
-          <SearchInput
-            aria-label="Search products"
-            placeholder="Search designs, styles, or keywords..."
-          />
-        </div>
-
-        <div className="flex items-center gap-1">
-          <button
-            type="button"
-            aria-label="Account"
-            className="
-              flex
-              size-11
-              shrink-0
-              items-center
-              justify-center
-              rounded-lg
-              text-white
-              transition-colors
-              hover:bg-white/5
-              focus-visible:outline-2
-              focus-visible:outline-orange-500
-            "
-          >
-            <User
-              className="size-6 xl:size-7"
-              strokeWidth={2}
-            />
-          </button>
-
-          <button
-            type="button"
-            aria-label="Shopping cart"
-            className="
-              flex
-              size-11
-              shrink-0
-              items-center
-              justify-center
-              rounded-lg
-              text-white
-              transition-colors
-              hover:bg-white/5
-              focus-visible:outline-2
-              focus-visible:outline-orange-500
-            "
-          >
-            <ShoppingCart
-              className="size-6 xl:size-7"
-              strokeWidth={2}
-            />
-          </button>
-        </div>
-      </div>
+      <HeaderActions key={pathname} />
     </header>
+  );
+}
+
+type HeaderDropdown = "search" | "cart" | "account";
+
+function HeaderActions() {
+  const [openDropdown, setOpenDropdown] = useState<HeaderDropdown | null>(null);
+
+  function handleOpenChange(dropdown: HeaderDropdown, open: boolean) {
+    setOpenDropdown((current) =>
+      open ? dropdown : current === dropdown ? null : current,
+    );
+  }
+
+  return (
+    <div className="contents md:flex md:min-w-0 md:items-center md:justify-end md:gap-1 xl:gap-4">
+      <div className="order-4 col-span-3 min-w-0 md:order-none md:max-w-96 md:flex-1">
+        <SearchDropdown
+          open={openDropdown === "search"}
+          onOpenChange={(open) => handleOpenChange("search", open)}
+        />
+      </div>
+      <div className="flex items-center gap-1">
+        <AccountDropdown
+          open={openDropdown === "account"}
+          onOpenChange={(open) => handleOpenChange("account", open)}
+        />
+        <CartDropdown
+          open={openDropdown === "cart"}
+          onOpenChange={(open) => handleOpenChange("cart", open)}
+        />
+      </div>
+    </div>
   );
 }

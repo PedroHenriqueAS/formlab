@@ -1,14 +1,15 @@
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import type { cards } from "@/utils/product";
 
-interface CardProps {
-  imageUrl: string;
-  slug: string;
-}
+type CardProps = (typeof cards)[number];
 
-export function Card({ imageUrl, slug }: CardProps) {
+export function Card({ imageUrl, slug, name, description, price }: CardProps) {
   return (
-    <Link href={`/products/${slug}`}>
+    <Link
+      href={`/products/${slug}`}
+      className="relative block min-w-0 rounded-2xl border border-transparent transition-[scale,border-color,box-shadow] duration-1000 ease-in-out hover:z-10 hover:border-[#ff6738] hover:shadow-[0_8px_24px_rgba(255,103,56,0.18)] focus-visible:z-10 focus-visible:border-[#ff6738] motion-safe:hover:scale-105 motion-reduce:transition-none"
+    >
     <div className="min-w-0 w-full overflow-hidden rounded-2xl bg-[#111212]">
       <div
         role="img"
@@ -28,12 +29,12 @@ export function Card({ imageUrl, slug }: CardProps) {
       </div>
       <div className="w-full p-3">
         <div className="flex flex-wrap justify-between gap-x-2 gap-y-1">
-          <p className="text-xs font-bold">Big camisa</p>
-          <span className="text-xs font-bold"> $45</span>
+          <p className="text-xs font-bold">{name}</p>
+          <span className="text-xs font-bold"> R${price}</span>
         </div>
         <div>
           <p className="mt-1 text-xs text-gray-400">
-            Descrição do produto
+            {description}
           </p>
         </div>
         <div className="mt-2 flex flex-wrap items-center justify-between gap-1">
