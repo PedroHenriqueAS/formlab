@@ -1,4 +1,4 @@
-import { cards, type ProductSize } from "@/utils/product";
+import { cards, type IProduct } from "@/utils/product";
 
 export type ProductImage = {
   id: string;
@@ -16,15 +16,9 @@ export type ProductVariant = {
   images: ProductImage[];
 };
 
-export type ProductDetails = {
-  slug: string;
-  name: string;
-  category: string;
-  price: number;
-  description: string;
-  sizes: readonly ProductSize[];
+export interface ProductDetails extends IProduct {
   variants: ProductVariant[];
-};
+}
 
 function detailImages(src: string, name: string): ProductImage[] {
   return [
@@ -99,13 +93,12 @@ export function getProductDetails(slug: string): ProductDetails | undefined {
   const isFujiHorizon = product.slug === "fuji-horizon";
 
   return {
-    slug: product.slug,
+    ...product,
     name: product.category === "T-Shirts" ? `${product.name} Tee` : product.name,
     category: product.category === "T-Shirts" ? "T-Shirt" : product.category,
     price: isFujiHorizon ? 179.9 : product.price,
     description:
       "A fusion of Japanese landscapes and modern streetwear. Made for those who find beauty in the details.",
-    sizes: product.sizes,
     variants: isFujiHorizon
       ? fujiVariants
       : [

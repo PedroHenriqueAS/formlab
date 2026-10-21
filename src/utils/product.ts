@@ -20,7 +20,21 @@ export type ProductColor =
 
 export type ProductSize = "S" | "M" | "L" | "XL" | "XXL";
 
-export const cards = [
+export interface IProduct {
+  id: number;
+  slug: string;
+  name: string;
+  category: string;
+  styles: string[];
+  imageUrl: string;
+  price: number;
+  description: string;
+  colors: ProductColor[];
+  sizes: ProductSize[];
+  isNewDrop: boolean;
+}
+
+export const cards: IProduct[] = [
   {
     id: 1,
     slug: "fuji-horizon",
@@ -188,4 +202,4 @@ export const cards = [
     sizes: ["S", "M", "L", "XL", "XXL"],
     isNewDrop: true,
   },
-] as const;
+];

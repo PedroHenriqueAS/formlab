@@ -6,6 +6,7 @@ import { NavigationProvider } from "@/providers/navigation-provider";
 
 import { instrumentSerif, manrope } from "./fonts";
 import "./globals.css";
+import { CartProvider } from "@/providers/cart-provider";
 
 export const metadata: Metadata = {
   title: "FormLab",
@@ -23,9 +24,11 @@ export default function RootLayout({
         className={`${manrope.variable} ${instrumentSerif.variable} font-sans antialiased`}
       >
         <NavigationProvider>
-          <Header />
-          {children}
-          <Footer />
+          <CartProvider>
+            <Header />
+            {children}
+            <Footer />
+          </CartProvider>
         </NavigationProvider>
       </body>
     </html>

@@ -5,9 +5,10 @@ import { useState } from "react";
 import { Check, Heart, ShieldCheck, Shirt, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { ProductSize } from "@/utils/product";
+import type { IProduct, ProductSize } from "@/utils/product";
 import type { ProductDetails, ProductVariant } from "../product-data";
 import { ProductSizeGuide } from "./product-size-guide";
+import { useCart } from "@/providers/cart-provider";
 
 type ProductInfoProps = {
   product: ProductDetails;
@@ -29,10 +30,16 @@ export default function ProductInfo({
   const [selectedSize, setSelectedSize] = useState<ProductSize>(product.sizes[0]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+  const { addToCart } = useCart();
   const price = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
   }).format(product.price);
+
+  function handleAdd(item: IProduct ) {
+    addToCart(item)
+    setIsAdded(true)
+  }
 
   return (
     <section aria-labelledby="product-title" className="flex min-w-0 flex-col text-white lg:py-6">
@@ -114,7 +121,7 @@ export default function ProductInfo({
           type="button"
           variant="buy"
           className="h-13 min-w-0 flex-1 gap-2 px-3 text-sm font-semibold sm:text-base"
-          onClick={() => setIsAdded(true)}
+          onClick={() => handleAdd(product)}
         >
           {isAdded ? (
             <><Check className="size-4" aria-hidden="true" /> Added to Cart</>
