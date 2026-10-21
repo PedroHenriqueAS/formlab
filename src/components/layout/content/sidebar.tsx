@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import { ResponsiveSheet } from "@/components/ui/responsive-sheet";
+import type { ProductColor, ProductSize } from "@/utils/product";
+import type { CatalogFilters, CatalogPriceRange } from "./catalog-filters";
 
-const sizes = ["S", "M", "L", "XL", "XXL"];
+const sizes: readonly ProductSize[] = ["S", "M", "L", "XL", "XXL"];
 
-const colors = [
+const colors: readonly { name: ProductColor; value: string }[] = [
   {
     name: "Black",
     value: "#171717",
@@ -29,7 +30,7 @@ const colors = [
   },
 ];
 
-const prices = [
+const prices: readonly { label: string; value: CatalogPriceRange }[] = [
   {
     label: "Under $30",
     value: "under-30",
@@ -44,33 +45,21 @@ const prices = [
   },
 ];
 
-export function FilterSidebar() {
-  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
-  const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
+type FilterSidebarProps = {
+  filters: CatalogFilters;
+  onToggleSize: (size: ProductSize) => void;
+  onToggleColor: (color: ProductColor) => void;
+  onPriceChange: (price: CatalogPriceRange | null) => void;
+  onClearFilters: () => void;
+};
 
-  function toggleSize(size: string) {
-    setSelectedSizes((current) =>
-      current.includes(size)
-        ? current.filter((item) => item !== size)
-        : [...current, size]
-    );
-  }
-
-  function toggleColor(color: string) {
-    setSelectedColors((current) =>
-      current.includes(color)
-        ? current.filter((item) => item !== color)
-        : [...current, color]
-    );
-  }
-
-  function clearFilters() {
-    setSelectedSizes([]);
-    setSelectedColors([]);
-    setSelectedPrice(null);
-  }
-
+export function FilterSidebar({
+  filters,
+  onToggleSize,
+  onToggleColor,
+  onPriceChange,
+  onClearFilters,
+}: FilterSidebarProps) {
   return (
     <ResponsiveSheet
       title="Filters"
@@ -94,7 +83,7 @@ export function FilterSidebar() {
 
           <button
             type="button"
-            onClick={clearFilters}
+            onClick={onClearFilters}
             className="
               min-h-11
               text-xs
@@ -107,7 +96,6 @@ export function FilterSidebar() {
           </button>
         </div>
 
-        {/* SIZE */}
         <details open className="group border-b border-white/10 py-5">
           <summary
             className="
@@ -136,14 +124,14 @@ export function FilterSidebar() {
 
           <div className="mt-4 flex flex-wrap gap-2">
             {sizes.map((size) => {
-              const isActive = selectedSizes.includes(size);
+              const isActive = filters.sizes.includes(size);
 
               return (
                 <button
                   key={size}
                   type="button"
                   aria-pressed={isActive}
-                  onClick={() => toggleSize(size)}
+                  onClick={() => onToggleSize(size)}
                   className={`
                     flex
                     min-h-11
@@ -169,7 +157,6 @@ export function FilterSidebar() {
           </div>
         </details>
 
-        {/* COLOR */}
         <details open className="group border-b border-white/10 py-5">
           <summary
             className="
@@ -198,7 +185,7 @@ export function FilterSidebar() {
 
           <div className="mt-4 flex flex-wrap gap-3">
             {colors.map((color) => {
-              const isActive = selectedColors.includes(color.name);
+              const isActive = filters.colors.includes(color.name);
 
               return (
                 <button
@@ -207,7 +194,7 @@ export function FilterSidebar() {
                   title={color.name}
                   aria-label={`Filter by ${color.name}`}
                   aria-pressed={isActive}
-                  onClick={() => toggleColor(color.name)}
+                  onClick={() => onToggleColor(color.name)}
                   className={`
                     flex
                     size-11
@@ -235,7 +222,6 @@ export function FilterSidebar() {
           </div>
         </details>
 
-        {/* PRICE */}
         <details open className="group py-5">
           <summary
             className="
@@ -264,18 +250,14 @@ export function FilterSidebar() {
 
           <div className="mt-4 flex flex-col gap-2">
             {prices.map((price) => {
-              const isActive = selectedPrice === price.value;
+              const isActive = filters.price === price.value;
 
               return (
                 <button
                   key={price.value}
                   type="button"
                   aria-pressed={isActive}
-                  onClick={() =>
-                    setSelectedPrice(
-                      isActive ? null : price.value
-                    )
-                  }
+                  onClick={() => onPriceChange(isActive ? null : price.value)}
                   className={`
                     min-h-11
                     rounded-lg

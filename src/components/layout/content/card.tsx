@@ -8,13 +8,13 @@ export function Card({ imageUrl, slug, name, description, price }: CardProps) {
   return (
     <Link
       href={`/products/${slug}`}
-      className="relative block min-w-0 rounded-2xl border border-transparent transition-[scale,border-color,box-shadow] duration-1000 ease-in-out hover:z-10 hover:border-[#ff6738] hover:shadow-[0_8px_24px_rgba(255,103,56,0.18)] focus-visible:z-10 focus-visible:border-[#ff6738] motion-safe:hover:scale-105 motion-reduce:transition-none"
+      className="group/card relative block min-w-0 rounded-2xl border border-transparent transition-[scale,border-color,box-shadow] duration-1000 ease-in-out hover:z-10 hover:border-[#ff6738] hover:shadow-[0_8px_24px_rgba(255,103,56,0.18)] focus-visible:z-10 focus-visible:border-[#ff6738] motion-safe:hover:scale-105 motion-reduce:transition-none"
     >
     <div className="min-w-0 w-full overflow-hidden rounded-2xl bg-[#111212]">
       <div
         role="img"
-        aria-label="Product mock design"
-        className="aspect-[3/2]
+        aria-label={`${name} printed design`}
+        className="relative aspect-[3/2]
                    w-full
                    overflow-hidden
                    rounded-t-2xl
@@ -26,6 +26,11 @@ export function Card({ imageUrl, slug, name, description, price }: CardProps) {
           backgroundImage: `url(${imageUrl})`,
         }}
       >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[length:200%_auto] bg-[position:center_58%] bg-no-repeat opacity-0 transition-opacity duration-1000 ease-in-out group-hover/card:opacity-100 group-focus-visible/card:opacity-100 motion-reduce:transition-none"
+          style={{ backgroundImage: `url(${imageUrl})` }}
+        />
       </div>
       <div className="w-full p-3">
         <div className="flex flex-wrap justify-between gap-x-2 gap-y-1">

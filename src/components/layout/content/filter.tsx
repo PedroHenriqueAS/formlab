@@ -1,38 +1,31 @@
 "use client";
 
 import { useState } from "react";
+
+import { catalogTopFilters, type CatalogTopFilter } from "./catalog-filters";
 import { Dropdown } from "./dropdown";
 
-const categories = [
-  "All",
-  "T-Shirts",
-  "Long Sleeve",
-  "V-Neck",
-  "Minimal",
-  "Street",
-  "New Drop",
-];
-
 interface FilterProps {
-    ProductsCount: number;
+  ProductsCount: number;
+  activeCategory: CatalogTopFilter;
+  onCategoryChange: (category: CatalogTopFilter) => void;
 }
 
-export function Filter({ ProductsCount }: FilterProps) {
-  const [activeCategory, setActiveCategory] = useState("All");
+export function Filter({ ProductsCount, activeCategory, onCategoryChange }: FilterProps) {
   const [sort, setSort] = useState("featured");
 
   return (
     <div className="flex min-w-0 flex-col gap-3 xl:flex-row xl:flex-wrap xl:items-center">
-      <p className="shrink-0 text-xs text-white/60">Products {ProductsCount}</p>
+      <p role="status" aria-atomic="true" className="shrink-0 text-xs text-white/60">Products {ProductsCount}</p>
       <div aria-label="Product categories" className="flex min-w-0 max-w-full gap-1 overflow-x-auto py-1 md:flex-wrap md:overflow-visible xl:flex-1">
-        {categories.map((category) => {
+        {catalogTopFilters.map((category) => {
           const isActive = activeCategory === category;
 
           return (
             <button
               key={category}
               type="button"
-              onClick={() => setActiveCategory(category)}
+              onClick={() => onCategoryChange(category)}
               aria-pressed={isActive}
               className={`
                 min-h-11
