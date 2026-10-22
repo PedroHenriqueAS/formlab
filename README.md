@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FormLab
 
-## Getting Started
+A Japanese-inspired streetwear storefront built with Next.js, React, TypeScript, and Tailwind CSS. It includes a filterable catalog, product galleries, variant selection, a shared cart, and a multi-step checkout using React Hook Form and Zod.
 
-First, run the development server:
+This is a portfolio demo with mock product data and illustrative delivery/payment options. It does not place real orders or collect payments. Promo codes and customization are reserved for a future version.
+
+## Development
+
+Use Node.js 22 (Next.js requires at least 20.9) and pnpm 10.32.1.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. No application environment variables are currently required. Production builds fetch Manrope and Instrument Serif through `next/font/google`, so they need access to Google Fonts.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm lint
+pnpm build
+pnpm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Code organization
 
-## Learn More
+- `src/app/`: routes and components specific to each page. Checkout configuration, schema, and form hook stay together here.
+- `src/components/layout/`: header, catalog, hero, and footer. Each header dropdown has its own component.
+- `src/components/ui/`: reusable controls, dialogs, and storefront links.
+- `src/data/`: mock catalog records and product-detail data construction.
+- `src/types/`: shared product, cart, and navigation contracts. Product types do not depend on mock data.
+- `src/lib/`: reusable pure functions, including cart calculations, currency formatting, and class-name utilities.
+- `src/providers/`: shared React state and its public hooks.
 
-To learn more about Next.js, take a look at the following resources:
+Keep small component props, UI constants, and event handlers beside their component. Extract shared domain contracts, repeated calculations, or substantial orchestration when that makes the code easier to follow. Form types are inferred from the Zod schema rather than maintained separately. Import modules directly; there is no global barrel file or generic service layer.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The cart currently lasts for the mounted session, and refreshing checkout resets its form. The existing catalog/product pricing and shipping-total integration still need alignment before the complete shopping journey is portfolio-ready.
