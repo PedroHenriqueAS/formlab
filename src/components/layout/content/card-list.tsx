@@ -44,7 +44,7 @@ export function CardList({ products, onClearFilters }: CardListProps) {
         <div
           role="img"
           aria-label="FormLab promotional artwork"
-          className="mx-auto aspect-[1/2] w-full max-w-64 self-start rounded-2xl bg-cover bg-center bg-no-repeat md:max-w-72 xl:mt-20 xl:max-w-none xl:rounded-r-none"
+          className="hidden aspect-[1/2] w-full self-start rounded-l-2xl bg-cover bg-center bg-no-repeat xl:mt-20 xl:block"
           style={{
             backgroundImage: `url(/side-banner.png)`,
           }}
