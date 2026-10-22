@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Dropdown } from "@/components/ui/dropdown";
-import { CatalogLink } from "@/components/ui/storefront-links";
+import { CatalogLink, CheckoutLink } from "@/components/ui/storefront-links";
 import { getCartQuantity, getCartSubtotal } from "@/lib/cart";
 import { formatCurrency } from "@/lib/format-currency";
 import { useCart } from "@/providers/cart-provider";
@@ -99,6 +99,7 @@ export function CartDropdown({ open, onOpenChange }: HeaderDropdownProps) {
             </span>
           </div>
           <CatalogLink onClose={() => onOpenChange(false)}>Continue shopping</CatalogLink>
+          <CheckoutLink onClose={() => onOpenChange(false)}>Checkout</CheckoutLink>
         </>
       ) : (
         <div className="py-3 text-center">
