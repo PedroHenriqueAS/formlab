@@ -76,7 +76,6 @@ export function getProductDetails(slug: string): ProductDetails | undefined {
   return {
     ...product,
     name: product.category === "T-Shirts" ? `${product.name} Tee` : product.name,
-    price: isFujiHorizon ? 179.9 : product.price,
     description:
       "A fusion of Japanese landscapes and modern streetwear. Made for those who find beauty in the details.",
     variants: isFujiHorizon

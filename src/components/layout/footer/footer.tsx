@@ -1,5 +1,6 @@
-import { ArrowRight, Trash } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { RightsSection } from "./rights-section";
+import { SocialButtons } from "./social-buttons";
 
 export function Footer() {
   return (
@@ -23,20 +24,7 @@ export function Footer() {
                 Custom shirts for self-expression, your team, your brand — or
                 just because. Make it yours.
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-4 xl:gap-6">
-                <button type="button" aria-label="Social profile 1 (placeholder)" className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
-                  <Trash size={16} />
-                </button>
-                <button type="button" aria-label="Social profile 2 (placeholder)" className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
-                  <Trash size={16} />
-                </button>
-                <button type="button" aria-label="Social profile 3 (placeholder)" className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
-                  <Trash size={16} />
-                </button>
-                <button type="button" aria-label="Social profile 4 (placeholder)" className="flex size-12 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white">
-                  <Trash size={16} />
-                </button>
-              </div>
+              <SocialButtons />
             </div>
             <div className="grid min-w-0 grid-cols-[repeat(auto-fit,minmax(6rem,1fr))] gap-x-4 gap-y-6 xl:grid-cols-3 xl:gap-6">
               <ul className="space-y-2 text-sm text-white/55">

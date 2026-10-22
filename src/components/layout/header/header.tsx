@@ -16,64 +16,65 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header
-      className="
-        mx-auto
-        grid
-        w-full
-        max-w-[1440px]
-        grid-cols-[1fr_auto_auto]
-        items-center
-        gap-2
-        bg-black
-        px-4
-        py-3
+    <header className="w-full bg-black">
+      <div
+        className="
+          mx-auto
+          grid
+          w-full
+          max-w-[1440px]
+          grid-cols-[1fr_auto_auto]
+          items-center
+          gap-2
+          px-4
+          py-3
 
-        md:grid-cols-[auto_auto_minmax(0,1fr)]
-        md:gap-3
-        md:px-6
+          md:grid-cols-[auto_auto_minmax(0,1fr)]
+          md:gap-3
+          md:px-6
 
-        xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]
-        xl:gap-8
-        xl:px-8
-      "
-    >
-      <div className="flex min-w-0 items-center gap-2">
-        <Link href="/">
-          <h1 className="text-2xl font-bold text-white hover:cursor-pointer">
-            FormLab
-          </h1>
-        </Link>
-        <span
-          aria-hidden="true"
-          className="hidden text-3xl font-thin text-gray-500 md:block"
-        >
-          |
-        </span>
+          xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]
+          xl:gap-8
+          xl:px-8
+        "
+      >
+        <div className="flex min-w-0 items-center gap-2">
+          <Link href="/">
+            <h1 className="text-2xl font-bold text-white hover:cursor-pointer">
+              FormLab
+            </h1>
+          </Link>
+          <span
+            aria-hidden="true"
+            className="hidden text-3xl font-thin text-gray-500 md:block"
+          >
+            |
+          </span>
 
-        <span
-          className="
-            hidden
-            w-18
-            text-xs
-            leading-tight
-            text-gray-500
-            uppercase
-            md:block
-          "
-        >
-          your ideas wear well
-        </span>
+          <span
+            className="
+              hidden
+              w-18
+              text-xs
+              leading-tight
+              text-gray-500
+              uppercase
+              md:block
+            "
+          >
+            your ideas wear well
+          </span>
+        </div>
+
+        <div className="order-3 md:order-none">
+          <HeaderNav
+            activeSection={activeSection}
+            onSectionChange={setActiveSection}
+          />
+        </div>
+
+        <HeaderActions key={pathname} />
       </div>
-
-      <div className="order-3 md:order-none">
-        <HeaderNav
-          activeSection={activeSection}
-          onSectionChange={setActiveSection}
-        />
-      </div>
-
-      <HeaderActions key={pathname} />
     </header>
   );
 }
