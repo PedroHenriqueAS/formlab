@@ -3,20 +3,20 @@
 import { useState } from "react";
 
 import { catalogTopFilters, type CatalogTopFilter } from "./catalog-filters";
-import { Dropdown } from "./dropdown";
+import { NativeSelect } from "@/components/ui/native-select";
 
 interface FilterProps {
-  ProductsCount: number;
+  productsCount: number;
   activeCategory: CatalogTopFilter;
   onCategoryChange: (category: CatalogTopFilter) => void;
 }
 
-export function Filter({ ProductsCount, activeCategory, onCategoryChange }: FilterProps) {
+export function Filter({ productsCount, activeCategory, onCategoryChange }: FilterProps) {
   const [sort, setSort] = useState("featured");
 
   return (
     <div className="flex min-w-0 flex-col gap-3 xl:flex-row xl:flex-wrap xl:items-center">
-      <p role="status" aria-atomic="true" className="shrink-0 text-xs text-white/60">Products {ProductsCount}</p>
+      <p role="status" aria-atomic="true" className="shrink-0 text-xs text-white/60">Products {productsCount}</p>
       <div aria-label="Product categories" className="flex min-w-0 max-w-full gap-1 overflow-x-auto py-1 md:flex-wrap md:overflow-visible xl:flex-1">
         {catalogTopFilters.map((category) => {
           const isActive = activeCategory === category;
@@ -57,7 +57,7 @@ export function Filter({ ProductsCount, activeCategory, onCategoryChange }: Filt
       </div>
       <div className="flex min-w-0 items-center gap-2 text-sm xl:ml-auto">
         <span className="shrink-0">sort by:</span>
-        <Dropdown
+        <NativeSelect
           label="Sort products"
           className="w-full md:w-48"
           value={sort}

@@ -1,5 +1,6 @@
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import { formatCurrency } from "@/lib/format-currency";
 import type { IProduct } from "@/types/product";
 
 type CardProps = Pick<IProduct, "imageUrl" | "slug" | "name" | "description" | "price">;
@@ -35,7 +36,7 @@ export function Card({ imageUrl, slug, name, description, price }: CardProps) {
       <div className="w-full p-3">
         <div className="flex flex-wrap justify-between gap-x-2 gap-y-1">
           <p className="text-xs font-bold">{name}</p>
-          <span className="text-xs font-bold"> R${price}</span>
+          <span className="text-xs font-bold">{formatCurrency(price)}</span>
         </div>
         <div>
           <p className="mt-1 text-xs text-gray-400">
@@ -49,9 +50,9 @@ export function Card({ imageUrl, slug, name, description, price }: CardProps) {
             <div className="rounded-md w-3 h-3 bg-gray-300" />
             <p className="text-[10px] font-bold">+3</p>
           </div>
-          <button type="button" aria-label="Add Big camisa to cart" className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-gray-300 text-white focus-visible:outline-2 focus-visible:outline-orange-500">
+          <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-gray-300 text-white">
             <Plus className="size-4" />
-          </button>
+          </span>
         </div>
       </div>
     </div>

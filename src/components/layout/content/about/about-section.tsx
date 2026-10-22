@@ -1,5 +1,3 @@
-// about-section.tsx
-
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { Advantages } from "./advantages";

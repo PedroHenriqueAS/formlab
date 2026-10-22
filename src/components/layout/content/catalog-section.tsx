@@ -66,7 +66,7 @@ export function CatalogSection() {
 
       <div className="min-w-0">
         <Filter
-          ProductsCount={filteredProducts.length}
+          productsCount={filteredProducts.length}
           activeCategory={filters.top}
           onCategoryChange={(top) => setFilters((current) => ({ ...current, top }))}
         />

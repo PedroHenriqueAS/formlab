@@ -1,5 +1,3 @@
-// customize-section.tsx
-
 export function CustomizeSection() {
   return (
     <section className="mt-6 flex min-h-[420px] items-center justify-center">

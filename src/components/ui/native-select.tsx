@@ -1,13 +1,13 @@
 "use client";
 
-export type DropdownOption = {
+export type SelectOption = {
   value: string;
   label: string;
   disabled?: boolean;
 };
 
-type DropdownProps = {
-  options: readonly DropdownOption[];
+type SelectProps = {
+  options: readonly SelectOption[];
   value: string;
   onChange: (value: string) => void;
   label?: string;
@@ -16,7 +16,7 @@ type DropdownProps = {
   className?: string;
 };
 
-export function Dropdown({
+export function NativeSelect({
   options,
   value,
   onChange,
@@ -24,7 +24,7 @@ export function Dropdown({
   name,
   disabled = false,
   className = "w-full md:w-48",
-}: DropdownProps) {
+}: SelectProps) {
   return (
     <div className={`relative min-w-0 max-w-full ${className}`}>
       <select
