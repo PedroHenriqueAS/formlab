@@ -1,6 +1,6 @@
 "use client";
 
-import { IProduct } from "@/utils/product";
+import type { IProduct } from "@/types/product";
 import {
   createContext,
   useContext,

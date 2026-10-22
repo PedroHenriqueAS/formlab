@@ -1,40 +1,6 @@
-export type ProductCategory =
-  | "T-Shirts"
-  | "Long Sleeve"
-  | "V-Neck"
-  | "Tank Top"
-  | "Hoodie"
-  | "Zip Hoodie"
-  | "Sweatshirt"
-  | "Cropped"
-  | "Oversized";
+import type { IProduct } from "@/types/product";
 
-export type ProductStyle = "Minimal" | "Street";
-
-export type ProductColor =
-  | "Black"
-  | "White"
-  | "Orange"
-  | "Blue"
-  | "Green";
-
-export type ProductSize = "S" | "M" | "L" | "XL" | "XXL";
-
-export interface IProduct {
-  id: number;
-  slug: string;
-  name: string;
-  category: string;
-  styles: string[];
-  imageUrl: string;
-  price: number;
-  description: string;
-  colors: ProductColor[];
-  sizes: ProductSize[];
-  isNewDrop: boolean;
-}
-
-export const cards: IProduct[] = [
+export const products: IProduct[] = [
   {
     id: 1,
     slug: "fuji-horizon",

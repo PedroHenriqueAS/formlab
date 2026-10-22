@@ -1,4 +1,4 @@
-import type { cards, ProductColor, ProductSize } from "@/utils/product";
+import type { IProduct, ProductColor, ProductSize } from "@/types/product";
 
 export const catalogTopFilters = [
   "All",
@@ -10,7 +10,6 @@ export const catalogTopFilters = [
   "New Drop",
 ] as const;
 
-export type CatalogProduct = (typeof cards)[number];
 export type CatalogTopFilter = (typeof catalogTopFilters)[number];
 export type CatalogPriceRange = "under-30" | "30-40" | "40-plus";
 
@@ -28,7 +27,7 @@ export const initialCatalogFilters: CatalogFilters = {
   price: null,
 };
 
-function matchesTopFilter(product: CatalogProduct, filter: CatalogTopFilter) {
+function matchesTopFilter(product: IProduct, filter: CatalogTopFilter) {
   switch (filter) {
     case "All":
       return true;
@@ -56,7 +55,7 @@ function matchesPrice(price: number, range: CatalogPriceRange | null) {
 }
 
 export function filterCatalogProducts(
-  products: readonly CatalogProduct[],
+  products: readonly IProduct[],
   filters: CatalogFilters,
 ) {
   return products.filter(

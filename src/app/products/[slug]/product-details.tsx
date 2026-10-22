@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import type { ProductDetails } from "../product-data";
+import type { ProductDetails } from "@/types/product";
 import { ProductGallery } from "./product-gallery";
 import ProductInfo from "./product-info";
 

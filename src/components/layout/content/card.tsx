@@ -1,8 +1,8 @@
 import { Plus } from "lucide-react";
 import Link from "next/link";
-import type { cards } from "@/utils/product";
+import type { IProduct } from "@/types/product";
 
-type CardProps = (typeof cards)[number];
+type CardProps = Pick<IProduct, "imageUrl" | "slug" | "name" | "description" | "price">;
 
 export function Card({ imageUrl, slug, name, description, price }: CardProps) {
   return (

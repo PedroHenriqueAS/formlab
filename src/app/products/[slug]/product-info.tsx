@@ -5,8 +5,7 @@ import { useState } from "react";
 import { Check, Heart, ShieldCheck, Shirt, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { IProduct, ProductSize } from "@/utils/product";
-import type { ProductDetails, ProductVariant } from "../product-data";
+import type { IProduct, ProductDetails, ProductSize, ProductVariant } from "@/types/product";
 import { ProductSizeGuide } from "./product-size-guide";
 import { useCart } from "@/providers/cart-provider";
 
@@ -45,7 +44,7 @@ export default function ProductInfo({
     <section aria-labelledby="product-title" className="flex min-w-0 flex-col text-white lg:py-6">
       <div className="flex items-center gap-5">
         <span className="text-[11px] font-semibold tracking-[0.2em] text-white/45 uppercase">
-          {product.category}
+          {product.category === "T-Shirts" ? "T-Shirt" : product.category}
         </span>
         <span aria-hidden="true" className="h-0.5 w-14 bg-[#ff552c]" />
       </div>

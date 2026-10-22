@@ -2,7 +2,7 @@
 
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import { ResponsiveSheet } from "@/components/ui/responsive-sheet";
-import type { ProductColor, ProductSize } from "@/utils/product";
+import type { ProductColor, ProductSize } from "@/types/product";
 import type { CatalogFilters, CatalogPriceRange } from "./catalog-filters";
 
 const sizes: readonly ProductSize[] = ["S", "M", "L", "XL", "XXL"];

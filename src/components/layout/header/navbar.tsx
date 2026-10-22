@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { ArrowLeft, Menu } from "lucide-react";
 
 import { ResponsiveSheet } from "@/components/ui/responsive-sheet";
+import { products } from "@/data/products";
 import type { ContentSection } from "@/types/navigation";
 
 type HeaderNavProps = {
@@ -30,31 +31,6 @@ const tabs: {
   },
 ];
 
-const productsMock: Record<
-  string,
-  {
-    name: string;
-    category: string;
-  }
-> = {
-  "fuji-horizon": {
-    name: "Fuji Horizon Tee",
-    category: "T-Shirts",
-  },
-  "koi-balance": {
-    name: "Koi Balance Tee",
-    category: "T-Shirts",
-  },
-  "torii-mist": {
-    name: "Torii Mist",
-    category: "Long Sleeve",
-  },
-  "moon-tide": {
-    name: "Moon Tide",
-    category: "V-Neck",
-  },
-};
-
 export function HeaderNav({
   activeSection,
   onSectionChange,
@@ -66,7 +42,7 @@ export function HeaderNav({
   if (isProductPage) {
     const slug = pathname.split("/")[2];
 
-    const product = productsMock[slug];
+    const product = products.find((item) => item.slug === slug);
 
     return (
       <nav
@@ -115,7 +91,7 @@ export function HeaderNav({
             </span>
 
             <span className="hidden text-sm text-white/70 xl:block">
-              {product.name}
+              {product.category === "T-Shirts" ? `${product.name} Tee` : product.name}
             </span>
           </>
         )}

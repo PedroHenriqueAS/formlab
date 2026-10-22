@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import type { ProductSize } from "@/utils/product";
+import type { ProductSize } from "@/types/product";
 
 const measurements: Record<ProductSize, { width: number; length: number }> = {
   S: { width: 52, length: 68 },

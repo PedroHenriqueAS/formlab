@@ -1,24 +1,5 @@
-import { cards, type IProduct } from "@/utils/product";
-
-export type ProductImage = {
-  id: string;
-  src: string;
-  alt: string;
-  label: string;
-  position?: string;
-  scale?: number;
-};
-
-export type ProductVariant = {
-  id: string;
-  label: string;
-  thumbnail: string;
-  images: ProductImage[];
-};
-
-export interface ProductDetails extends IProduct {
-  variants: ProductVariant[];
-}
+import { products } from "./products";
+import type { ProductDetails, ProductImage, ProductVariant } from "@/types/product";
 
 function detailImages(src: string, name: string): ProductImage[] {
   return [
@@ -84,7 +65,7 @@ const fujiVariants: ProductVariant[] = [
 ];
 
 export function getProductDetails(slug: string): ProductDetails | undefined {
-  const product = cards.find((item) => item.slug === slug);
+  const product = products.find((item) => item.slug === slug);
 
   if (!product) {
     return undefined;
@@ -95,7 +76,6 @@ export function getProductDetails(slug: string): ProductDetails | undefined {
   return {
     ...product,
     name: product.category === "T-Shirts" ? `${product.name} Tee` : product.name,
-    category: product.category === "T-Shirts" ? "T-Shirt" : product.category,
     price: isFujiHorizon ? 179.9 : product.price,
     description:
       "A fusion of Japanese landscapes and modern streetwear. Made for those who find beauty in the details.",

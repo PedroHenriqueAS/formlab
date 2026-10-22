@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 
-import { cards, type ProductColor, type ProductSize } from "@/utils/product";
+import { products } from "@/data/products";
+import type { ProductColor, ProductSize } from "@/types/product";
 
 import {
   filterCatalogProducts,
@@ -16,7 +17,7 @@ import { FilterSidebar } from "./sidebar";
 export function CatalogSection() {
   const [filters, setFilters] = useState<CatalogFilters>(initialCatalogFilters);
   const filteredProducts = useMemo(
-    () => filterCatalogProducts(cards, filters),
+    () => filterCatalogProducts(products, filters),
     [filters],
   );
 

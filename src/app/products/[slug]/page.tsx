@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { getProductDetails } from "../product-data";
+import { getProductDetails } from "@/data/product-details";
 import { ProductDetailsView } from "./product-details";
 import { ProductStory } from "./product-story";
 

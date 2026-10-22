@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
-import type { ProductImage, ProductVariant } from "../product-data";
+import type { ProductImage, ProductVariant } from "@/types/product";
 
 function imageStyle(image: ProductImage): CSSProperties {
   return {

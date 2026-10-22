@@ -9,7 +9,8 @@ import { Dropdown } from "@/components/ui/dropdown";
 import { SearchInput } from "@/components/ui/search-input";
 import { useCart } from "@/providers/cart-provider";
 import { useNavigation } from "@/providers/navigation-provider";
-import { cards, type IProduct } from "@/utils/product";
+import { products } from "@/data/products";
+import type { IProduct } from "@/types/product";
 
 type HeaderDropdownProps = {
   open: boolean;
@@ -52,13 +53,13 @@ export function SearchDropdown({ open, onOpenChange }: HeaderDropdownProps) {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const searchTerm = query.trim().toLowerCase();
-  const matchingProducts = cards.filter((product) =>
+  const matchingProducts = products.filter((product) =>
     [product.name, product.category, product.description, ...product.styles]
       .join(" ")
       .toLowerCase()
       .includes(searchTerm),
   );
-  const results = searchTerm ? matchingProducts : cards.slice(0, 4);
+  const results = searchTerm ? matchingProducts : products.slice(0, 4);
 
   return (
     <Dropdown

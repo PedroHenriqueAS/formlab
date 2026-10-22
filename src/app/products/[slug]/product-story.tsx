@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import type { ProductDetails } from "../product-data";
+import type { ProductDetails } from "@/types/product";
 
 export function ProductStory({ product }: { product: ProductDetails }) {
   const artworkImage =

@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
 
 import { Card } from "./card";
 import { CatalogEmptyState } from "./catalog-empty-state";
-import type { CatalogProduct } from "./catalog-filters";
+import type { IProduct } from "@/types/product";
 
 type CardListProps = {
-  products: readonly CatalogProduct[];
+  products: readonly IProduct[];
   onClearFilters: () => void;
 };
 
@@ -27,9 +27,9 @@ export function CardList({ products, onClearFilters }: CardListProps) {
       <div className="relative grid min-w-0 grid-cols-1 content-start gap-3 min-[360px]:grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(max(12rem,calc((100%_-_2rem)/3)),1fr))] md:gap-4 xl:grid-cols-4">
         <AnimatePresence initial={false} mode="popLayout">
           {hasProducts ? (
-            products.map((card) => (
-              <AnimatedCatalogItem key={card.id}>
-                <Card {...card} />
+            products.map((product) => (
+              <AnimatedCatalogItem key={product.id}>
+                <Card {...product} />
               </AnimatedCatalogItem>
             ))
           ) : (
