@@ -5,7 +5,8 @@ import { useState } from "react";
 import { Check, Heart, ShieldCheck, Shirt, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { IProduct, ProductDetails, ProductSize, ProductVariant } from "@/types/product";
+import { formatCurrency } from "@/lib/format-currency";
+import type { ProductDetails, ProductSize, ProductVariant } from "@/types/product";
 import { ProductSizeGuide } from "./product-size-guide";
 import { useCart } from "@/providers/cart-provider";
 
@@ -30,14 +31,17 @@ export default function ProductInfo({
   const [isFavorite, setIsFavorite] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
   const { addToCart } = useCart();
-  const price = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(product.price);
+  const price = formatCurrency(product.price);
 
-  function handleAdd(item: IProduct ) {
-    addToCart(item)
-    setIsAdded(true)
+  function handleAdd() {
+    addToCart({
+      ...product,
+      variantId: selectedVariant.id,
+      color: selectedVariant.label,
+      size: selectedSize,
+      imageUrl: selectedVariant.thumbnail,
+    });
+    setIsAdded(true);
   }
 
   return (
@@ -120,7 +124,7 @@ export default function ProductInfo({
           type="button"
           variant="buy"
           className="h-13 min-w-0 flex-1 gap-2 px-3 text-sm font-semibold sm:text-base"
-          onClick={() => handleAdd(product)}
+          onClick={handleAdd}
         >
           {isAdded ? (
             <><Check className="size-4" aria-hidden="true" /> Added to Cart</>

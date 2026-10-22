@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { useNavigation } from "@/providers/navigation-provider";
 
-import { AccountDropdown, CartDropdown, SearchDropdown } from "./header-dropdowns";
+import { AccountDropdown } from "./account-dropdown";
+import { CartDropdown } from "./cart-dropdown";
 import { HeaderNav } from "./navbar";
+import { SearchDropdown } from "./search-dropdown";
 
 export function Header() {
   const { activeSection, setActiveSection } = useNavigation();
@@ -36,10 +39,11 @@ export function Header() {
       "
     >
       <div className="flex min-w-0 items-center gap-2">
-        <h1 className="text-2xl font-bold text-white">
-          FormLab
-        </h1>
-
+        <Link href="/">
+          <h1 className="text-2xl font-bold text-white hover:cursor-pointer">
+            FormLab
+          </h1>
+        </Link>
         <span
           aria-hidden="true"
           className="hidden text-3xl font-thin text-gray-500 md:block"
